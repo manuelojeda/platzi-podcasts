@@ -2,12 +2,14 @@ import React from 'react'
 import { withRouter } from 'next/router'
 import axios from 'axios'
 import Link from 'next/link'
+import LinkButton from '../components/LinkButton'
 
 const Channel = ({ channel, series, audios }) => {
   return (
     <>
       <header>Podcasts</header>
       <div className="banner" style={{ backgroundImage: `url(${channel.urls.banner_image.original})` }} />
+      <LinkButton url="/" />
       <h1>{ channel.title }</h1>
 
       { series.length > 0 &&
@@ -28,7 +30,11 @@ const Channel = ({ channel, series, audios }) => {
 
       <h2>Ultimos Podcasts</h2>
       { audios.map((clip) => (
-        <div className="podcast" key={clip.id}>{ clip.title }</div>
+        <Link href={`/podcast?id=${clip.id}`} key={clip.id}>
+          <a className="podcast-link">
+            <div className="podcast">{ clip.title }</div>
+          </a>
+        </Link>
       ))}
 
 
@@ -60,6 +66,17 @@ const Channel = ({ channel, series, audios }) => {
           margin-bottom: 0.5em;
           color: #333;
           text-decoration: none;
+        }
+        a.podcast-link {
+          text-decoration: none;
+          transition: all ease .2s;
+        }
+        a.podcast-link > div {
+          transition: all ease .2s;
+        }
+        a.podcast-link:hover > div {
+          color: #fff;
+          background: #8756ca;
         }
         .channel img {
           border-radius: 3px;

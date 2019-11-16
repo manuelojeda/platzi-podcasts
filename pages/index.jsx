@@ -1,37 +1,76 @@
 import React from 'react'
+import axios from 'axios'
 
-const Index = () => {
+const Index = ({ channels }) => {
   return (
     <>
-      <h1>Hola Platzi!</h1>
-      <p>Bienvenido al curso de Next.js</p>
+      <header>Podcasts</header>
 
-      <img src="/images/platzi-logo.png" alt="Platzi"/>
+      <div className="channels">
+        {
+          channels.map((channel) => (
+            <a href="#" className="channel" key={channel.id}>
+              <img src={channel.urls.logo_image.original} alt="" />
+              <h2>{ channel.title }</h2>
+            </a>
+          ))
+        }
+      </div>
 
       <style jsx>{`
-        h1 {
-          color: red;
+        header {
+          color: #fff;
+          background: #8756ca;
+          padding: 15px;
+          text-align: center;
         }
-
-        :global(p) {
-          color: green;
+        .channels {
+          display: grid;
+          grid-gap: 15px;
+          padding: 15px;
+          grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
         }
-
-        img {
-          max-width: 50%;
+        a.channel {
           display: block;
-          margin: 0 auto;
+          margin-bottom: 0.5em;
+          color: #333;
+          text-decoration: none;
         }
-      `}
-      </style>
+        .channel img {
+          border-radius: 3px;
+          box-shadow: 0px 2px 6px rgba(0,0,0,0.15);
+          width: 100%;
+        }
+        h2 {
+          padding: 5px;
+          font-size: 0.9em;
+          font-weight: 600;
+          margin: 0;
+          text-align: center;
+        }
+      `}</style>
 
       <style jsx global>{`
         body {
+          margin: 0;
+          font-family: system-ui;
           background: white;
         }
       `}</style>
     </>
   )
+}
+
+Index.getInitialProps = async () => {
+  const response = await axios({
+    url: 'https://api.audioboom.com/channels/recommended'
+  })
+
+  let channels = await response.data.body
+
+  return {
+    channels
+  }
 }
 
 export default Index

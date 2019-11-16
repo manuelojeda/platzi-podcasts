@@ -1,4 +1,6 @@
 import React from 'react'
+import { withRouter } from 'next/router'
+import Link from 'next/link'
 import axios from 'axios'
 
 const Index = ({ channels }) => {
@@ -9,10 +11,12 @@ const Index = ({ channels }) => {
       <div className="channels">
         {
           channels.map((channel) => (
-            <a href="#" className="channel" key={channel.id}>
-              <img src={channel.urls.logo_image.original} alt="" />
-              <h2>{ channel.title }</h2>
-            </a>
+            <Link href={`/channel?id=${channel.id}`} prefetch key={channel.id}>
+              <a className="channel">
+                <img src={channel.urls.logo_image.original} alt="" />
+                <h2>{ channel.title }</h2>
+              </a>
+            </Link>
           ))
         }
       </div>
@@ -73,4 +77,4 @@ Index.getInitialProps = async () => {
   }
 }
 
-export default Index
+export default withRouter(Index)

@@ -1,10 +1,15 @@
 import React from 'react'
 import axios from 'axios'
 import Link from 'next/link'
+import { Helmet } from 'react-helmet'
 
 const Podcast = ({ clip }) => {
   return (
     <>
+      <Helmet>
+        <title>{clip.title} una producción de {clip.channel.title} - Platzi Podcast</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+      </Helmet>
       <header>Podcasts</header>
 
       <div className='modal'>

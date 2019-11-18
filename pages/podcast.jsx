@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import Link from 'next/link'
 import { Helmet } from 'react-helmet'
+import { withRouter } from 'next/router'
 
 const Podcast = ({ clip }) => {
   return (
@@ -118,4 +119,4 @@ Podcast.getInitialProps = async ({ query }) => {
   }
 }
 
-export default Podcast
+export default withRouter(Podcast)

@@ -6,7 +6,7 @@ const LinkButton = ({ url }) => {
     <>
       <Link href={url}>
         <a>
-          &lt; Return
+          &lt; Volver
         </a>
       </Link>
 

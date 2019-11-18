@@ -27,7 +27,7 @@ const Layout = ({ title, SeoTitle, children }) => {
           text-align: center;
         }
         a {
-          padding: 15px;
+          padding: 15px 0;
           color: #fff;
           text-decoration: none;
           font-weight: 500;

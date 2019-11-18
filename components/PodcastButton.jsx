@@ -1,11 +1,20 @@
 import React from 'react'
-import Link from 'next/link'
+import { Link } from '../routes'
+import slug from '../helpers/slug'
 
 const PodcastButton = (props) => {
   const clip = props
   return (
     <>
-      <Link href={`/podcast?id=${clip.id}`} >
+      <Link
+        route='podcast'
+        params={{
+          slugChannel: slug(clip.channel.title),
+          idChannel: clip.channel.id,
+          slug: slug(clip.title),
+          id: clip.id
+        }}
+      >
         <a className="podcast-link">
           <div className="podcast">{ clip.title }</div>
         </a>

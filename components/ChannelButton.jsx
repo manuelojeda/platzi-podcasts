@@ -1,11 +1,19 @@
 import React from 'react'
-import Link from 'next/link'
+import { Link } from '../routes'
+import slug from '../helpers/slug'
 
 const ChannelButton = (props) => {
   const channel = props
   return (
     <>
-      <Link href={`/channel?id=${channel.id}`} key={channel.id}>
+      <Link
+        route='channel'
+        params={{
+          slug: slug(channel.title),
+          id: channel.id
+        }}
+        key={channel.id}
+      >
         <a className="channel">
           <img src={channel.urls.logo_image.original} alt="" />
           <h2>{ channel.title }</h2>

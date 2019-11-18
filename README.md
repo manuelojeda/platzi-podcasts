@@ -4,6 +4,8 @@ App de Podcasts integrada con la API de AudioBoom para aprender Next.js
 
 ![Captura de la App](./.readme-static/captura.png)
 
+[Ver la aplicación](https://podcasts.manuelojeda.now.sh)
+
 ## ¿Cómo funciona?
 
 Requiere NodeJS LTS (12)
